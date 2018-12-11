@@ -1,0 +1,12 @@
+name: NzWine
+title: NzWine
+username:
+account: annabelle-paterson
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 604499
+bundleId: 1756101
+url: https://annabelle-paterson.shinyapps.io/NzWine/
+when: 1544552673.44643
+asMultiple: FALSE
+asStatic: FALSE
