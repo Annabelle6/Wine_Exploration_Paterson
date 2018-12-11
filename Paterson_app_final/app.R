@@ -5,7 +5,10 @@ library(tidyverse)
 library(ggrepel)
 library(dplyr)
 library(ggmap)
+library(sf)
 library(ggthemes)
+library(rsconnect)
+
 
 #importing created data from my R. files 
 #Wine data
@@ -63,16 +66,17 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
 #having 2009 to 2018 was a bit much and a waste if space 
 #having only the even numbers shows the growth clearly and effectively
 
-  #creating a 2010 tab
+  #creating a 2010 map tab
   tabPanel("2010",
            #creates a fluid page layout with columns and rows 
            #makes sure the elements appear on the same line
            #scales to differernt browsers automatically
            fluidPage(
              #Heading
+             div(class="well",
              h2("2010"),
              #Guidence
-             h5("Hover over map to see how many wineries are in each region"),
+             h5("Hover over the map to explore how many wineries are in each region of New Zealand.")),
              #show 2010 map
              plotlyOutput("plot2010")
            )
@@ -81,8 +85,9 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
   #creating a 2012 tab
   tabPanel("2012",
            fluidPage(
+             div(class="well",
              h2("2012"),
-             h5("Hover over map to see how many wineries are in each region"),
+             h5("Hover over map to see how many wineries are in each region")),
              plotlyOutput("plot2012")
            )
   ), 
@@ -90,8 +95,9 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
   #creating a 2014 tab
   tabPanel("2014",
            fluidPage(
+             div(class="well",
              h2("2014"),
-             h5("Hover over map to see how many wineries are in each region"),
+             h5("Hover over map to see how many wineries are in each region")),
              plotlyOutput("plot2014")
            )
   ), 
@@ -99,8 +105,9 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
   #creating a 2016 tab
   tabPanel("2016",
            fluidPage(
+             div(class="well",
              h2("2016"),
-             h5("Hover over map to see how many wineries are in each region"),
+             h5("Hover over map to see how many wineries are in each region")),
              plotlyOutput("plot2016")
            )
   ), 
@@ -109,8 +116,9 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
   #creating a 2018 tab
   tabPanel("2018",
            fluidPage(
+             div(class="well",
              h2("2018"),
-             h5("Hover over map to see how many wineries are in each region"),
+             h5("Hover over map to see how many wineries are in each region")),
              plotlyOutput("plot2018")
            )
   ), 
@@ -119,7 +127,7 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
   #shows where New Zealand wine is being exported to 
   tabPanel("World", 
            fluidPage(
-             div(class = "jumbotron", 
+             div(class="well",
              h3("New Zealand Wine Distribution Around the World"),
              h5("Top 10 Countries"),
              h5("(Hover for country names)")),
@@ -146,6 +154,7 @@ server <- function(input, output, session) {
               ) +
       #to remove map plot grid 
       theme_void()
+      
     
     #plot map
     ggplotly(p2010) %>%
