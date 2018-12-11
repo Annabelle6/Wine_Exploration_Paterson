@@ -2,7 +2,7 @@ library(plotly)
 library(dplyr)
 library(tidyverse)
 
-locations <- read.csv("flights.csv", stringsAsFactors = FALSE)
+locations <- read.csv("World.csv", stringsAsFactors = FALSE)
 
 
 register_google(key = "AIzaSyARmTFbYyT98l6XQp0zwCJmbTtL54Oj2cw")
