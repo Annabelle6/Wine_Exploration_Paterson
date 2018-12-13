@@ -48,7 +48,7 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
                  div(class="panel-body",
                   h4("Explore this app to find out more about how the amount of wineries in each region of New Zealand has grown over the past 8 years. 
                      Click on 2010, 2012, 2014, 2016 or 2018 tab at the top of this page 
-                      to see how many wineries there were in each region at this certian point in time."),
+                      to see how many wineries there were in each region at this certain point in time."),
                   h4("New Zealand wine is becoming more and more popular around the world and in the WORLD tab you can see where in the world New Zealand wine is being exported to.")
                   )),
              div(class="panel panel-danger",
