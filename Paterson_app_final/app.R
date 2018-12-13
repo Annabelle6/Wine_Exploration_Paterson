@@ -148,15 +148,17 @@ server <- function(input, output, session) {
   #2010 map created here
   
   output$plot2010 <- renderPlotly({
-    # specify some map projection/options
+    # specify map projection/options
     p2010 <- ggplot(data = data) +
+      #fill by the Region col
+      #provide the amount of wineries in the hover using year col 
       geom_sf(aes(fill = Region, text = x2010)
               ) +
-      #to remove map plot grid 
+      #to remove map plot grid and make it clean
       theme_void()
       
     
-    #plot map
+    #plot map using plotly for interaction and hover  
     ggplotly(p2010) %>%
       highlight(
         "plotly_hover",
@@ -246,23 +248,25 @@ server <- function(input, output, session) {
   
     #specify map projections
     pWorld <- plot_geo(color = I("red")) %>%
+      #add dots country names in hover
       add_markers(
         data = dots, x = ~lon, y = ~lat, text = ~dot,
-        size = ~order, hoverinfo = "text", alpha = 0.5) %>%
+        size = ~desc(order), hoverinfo = "text", alpha = 0.5) %>%
       
+      #add lines
       add_segments(
         data = group_by(locations, Order),
         x = ~lon.y, xend = ~lon.x,
         y = ~lat.y, yend = ~lat.x,
         alpha = 0.3, size = I(1), hoverinfo = "none") %>%
       
+      #layout of map
       layout(
         geo = geo, 
         showlegend = FALSE, 
         height=800, 
         dragmode = "select")
-      
-    
+     
     #plot map
     ggplotly(pWorld)
 

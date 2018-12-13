@@ -130,7 +130,8 @@ colnames(full)[colnames(full)=="REGC2016_N"] <- "Region"
 
 #writing the wine and map data to use in my shiny app
 write_rds(full, "Nz_wine_map_data", compress = "none")
-
+#writing it to my app file 
+write_rds(full, "Paterson_app_final/Nz_wine_map_data", compress = "none")
 
 
 
