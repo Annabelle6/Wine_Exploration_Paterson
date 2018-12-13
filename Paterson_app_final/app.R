@@ -12,10 +12,10 @@ library(rsconnect)
 
 #importing created data from my R. files 
 #Wine data
-data <- readRDS("Nz_wine_map_data")
+data <- read_rds("Nz_wine_map_data")
 #World Map Data
-dots <- readRDS("dots_new")
-locations <- readRDS("locations_new")
+dots <- read_rds("dots_new")
+locations <- read_rds("locations_new")
 
 #UI
 #add bootstrap theme to make it look cleaner 
@@ -78,7 +78,14 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
              #Guidence
              h5("Hover over the map to explore how many wineries are in each region of New Zealand.")),
              #show 2010 map
-             plotlyOutput("plot2010")
+             plotlyOutput("plot2010"), 
+             div(class="panel panel-default",
+                 div(class="panel-heading", h4("Things to observe")), 
+                 div(class="panel-body",
+                     h4("Marlborough Region has the greatest number of wineries. They are renowned for their amazing wine."),
+                     h4("Auckland and Otago are in close second and third. It is interesting that Otago has so many because it is gets very cold in the south island"), 
+                     h4("In 2010 there were no wineries in Tasman, Southland, West Coast, Manawatu-Wanganui or Taranaki")
+                     ))
            )
   ),
   
@@ -87,8 +94,14 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
            fluidPage(
              div(class="well",
              h2("2012"),
-             h5("Hover over map to see how many wineries are in each region")),
-             plotlyOutput("plot2012")
+             h5("Hover over the map to explore how many wineries are in each region of New Zealand.")),
+             plotlyOutput("plot2012"),
+             div(class="panel panel-default",
+                 div(class="panel-heading", h4("Things to observe")), 
+                 div(class="panel-body",
+                     h4("Marlborough Region has now increased to 142 wineries. Most regions have grown in amount. Some of the smaller regions decreased, in those regions it must be harder to grow vines."),
+                     h4("There were still no wineries in Tasman, Southland, West Coast, Manawatu-Wanganui or Taranaki")
+                 ))
            )
   ), 
 
@@ -97,8 +110,14 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
            fluidPage(
              div(class="well",
              h2("2014"),
-             h5("Hover over map to see how many wineries are in each region")),
-             plotlyOutput("plot2014")
+             h5("Hover over the map to explore how many wineries are in each region of New Zealand.")),
+             plotlyOutput("plot2014"), 
+             div(class="panel panel-default",
+                 div(class="panel-heading", h4("Things to observe")), 
+                 div(class="panel-body",
+                     h4("We see a drop in Auckland and there are now only 114 wineries, now the third largest. Considering the size of auckland and the fact that is a very city orientated town, this is still impressive"),
+                     h4("Otago is rapidly increasing and there is still growth in the Marlborough Region")
+                 ))
            )
   ), 
   
@@ -107,8 +126,13 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
            fluidPage(
              div(class="well",
              h2("2016"),
-             h5("Hover over map to see how many wineries are in each region")),
-             plotlyOutput("plot2016")
+             h5("Hover over the map to explore how many wineries are in each region of New Zealand.")),
+             plotlyOutput("plot2016"), 
+             div(class="panel panel-default",
+                 div(class="panel-heading", h4("Things to observe")), 
+                 div(class="panel-body",
+                     h4("Otago has now caught up to Marlborough Region. This explains the buzz around Otago wine in the past few years.")
+                 ))
            )
   ), 
   
@@ -118,8 +142,15 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
            fluidPage(
              div(class="well",
              h2("2018"),
-             h5("Hover over map to see how many wineries are in each region")),
-             plotlyOutput("plot2018")
+             h5("Hover over the map to explore how many wineries are in each region of New Zealand.")),
+             plotlyOutput("plot2018"), 
+             div(class="panel panel-default",
+                 div(class="panel-heading", h4("Things to observe")), 
+                 div(class="panel-body",
+                     h4("Overall, considering the size of our small country the quantity of wineries is 
+                        impressive. It will be exciting to follow the growth of the New Zealand Wine industry in the following years.")
+                 )
+              )
            )
   ), 
   
@@ -129,12 +160,13 @@ ui <- navbarPage(theme = shinytheme("sandstone"),
            fluidPage(
              div(class="well",
              h3("New Zealand Wine Distribution Around the World"),
-             h5("Top 10 Countries"),
-             h5("(Hover for country names)")),
+             h5("Top 10 Countries (Hover for country names)"),
+             h6("Map Help: Play around with the map controls in the top right corner
+                to zoom, pan and explore how far New Zealand wine has made it around the world.")),
              plotlyOutput("World")
-           
-           )
-)
+             
+           ) 
+        )
 
 )
 
